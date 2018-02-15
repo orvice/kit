@@ -1,10 +1,6 @@
 package mod
 
-type InfluxDB struct {
-	Addr     string
-	Username string
-	Password string
-}
+
 
 type Mysql struct {
 	Host     string `json:"host"`
@@ -12,4 +8,17 @@ type Mysql struct {
 	User     string `json:"user"`
 	Password string `json:"password"`
 	Database string `json:"database"`
+}
+
+type Redis struct {
+	Host     string `json:"host"`
+	Port     int    `json:"port"`
+	Password string `json:"password"`
+	DB       int32  `json:"db"`
+}
+
+type InfluxDB struct {
+	Addr     string
+	Username string
+	Password string
 }
