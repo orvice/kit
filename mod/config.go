@@ -1,7 +1,5 @@
 package mod
 
-
-
 type Mysql struct {
 	Host     string `json:"host"`
 	Port     int    `json:"port"`
@@ -14,7 +12,7 @@ type Redis struct {
 	Host     string `json:"host"`
 	Port     int    `json:"port"`
 	Password string `json:"password"`
-	DB       int32  `json:"db"`
+	DB       int    `json:"db"`
 }
 
 type InfluxDB struct {
