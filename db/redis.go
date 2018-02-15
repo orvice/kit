@@ -20,8 +20,8 @@ func InitRedis(cfgs map[string]mod.Redis) error {
 	for k, v := range cfgs {
 		client := redis.NewClient(&redis.Options{
 			Addr:     fmt.Sprintf("%s:%d", v.Host, v.Port),
-			Password: v.Password, // no password set
-			DB:       v.DB,       // use default DB
+			Password: v.Password,
+			DB:       v.DB,
 		})
 		redisClients[k] = client
 	}
