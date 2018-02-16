@@ -27,3 +27,9 @@ func (c *Client) KVGet(key string) ([]byte, error) {
 	}
 	return p.Value, nil
 }
+
+func (c *Client) KVSet(key string, value []byte) error {
+	p := &api.KVPair{Key: key, Value: value}
+	_, err = kv.Put(p, nil)
+	return err
+}
