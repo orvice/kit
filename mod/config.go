@@ -20,3 +20,8 @@ type InfluxDB struct {
 	Username string
 	Password string
 }
+
+type Telegram struct {
+	Name  string `json:"name"`
+	Token string `json:"token"`
+}
