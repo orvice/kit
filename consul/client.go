@@ -22,5 +22,8 @@ func (c *Client) KVGet(key string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	if p == nil {
+		return []byte{}, nil
+	}
 	return p.Value, nil
 }
