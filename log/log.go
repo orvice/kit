@@ -1,6 +1,9 @@
 package log
 
-import "github.com/sirupsen/logrus"
+import (
+	"github.com/sirupsen/logrus"
+	"os"
+)
 
 type Logger interface {
 	Debug(v ...interface{})
@@ -14,5 +17,16 @@ type Logger interface {
 func NewDefaultLogger() Logger {
 	l := logrus.New()
 	l.SetLevel(logrus.DebugLevel)
+	return l
+}
+
+func NewFileLogger(path string) Logger {
+	l := logrus.New()
+	file, err := os.OpenFile("logrus.log", os.O_CREATE|os.O_WRONLY, 0666)
+	if err == nil {
+		l.Out = file
+	} else {
+		l.Errorf("Failed to log to file, using default stderr %v", err)
+	}
 	return l
 }
