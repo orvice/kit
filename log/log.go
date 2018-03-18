@@ -1,8 +1,9 @@
 package log
 
 import (
-	"github.com/sirupsen/logrus"
 	"os"
+
+	"github.com/sirupsen/logrus"
 )
 
 type Logger interface {
@@ -22,7 +23,7 @@ func NewDefaultLogger() Logger {
 
 func NewFileLogger(path string) Logger {
 	l := logrus.New()
-	file, err := os.OpenFile("logrus.log", os.O_CREATE|os.O_WRONLY, 0666)
+	file, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0666)
 	if err == nil {
 		l.Out = file
 	} else {
