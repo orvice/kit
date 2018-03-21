@@ -27,7 +27,7 @@ func NewFileLogger(path string) Logger {
 	if err == nil {
 		l.Out = file
 	} else {
-		l.Errorf("Failed to log to file, using default stderr %v", err)
+		l.Errorf("Failed to log to file %s, using default stderr %v", path, err)
 	}
 	return l
 }
