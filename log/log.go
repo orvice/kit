@@ -23,6 +23,7 @@ func NewDefaultLogger() Logger {
 
 func NewFileLogger(path string) Logger {
 	l := logrus.New()
+	l.SetLevel(logrus.DebugLevel)
 	file, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0666)
 	if err == nil {
 		l.Out = file
