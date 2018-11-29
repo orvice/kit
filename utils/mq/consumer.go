@@ -12,6 +12,8 @@ type Consumer struct {
 	tag     string
 	done    chan error
 
+	debug bool
+
 	fn func([]byte)
 }
 
@@ -80,12 +82,14 @@ func (c *Consumer) Shutdown() error {
 
 func (c *Consumer) handle(deliveries <-chan amqp.Delivery, done chan error) {
 	for d := range deliveries {
-		log.Printf(
-			"got %dB delivery: [%v] %q",
-			len(d.Body),
-			d.DeliveryTag,
-			d.Body,
-		)
+		if c.debug {
+			log.Printf(
+				"got %dB delivery: [%v] %q",
+				len(d.Body),
+				d.DeliveryTag,
+				d.Body,
+			)
+		}
 		c.fn(d.Body)
 		d.Ack(false)
 	}
