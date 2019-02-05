@@ -10,6 +10,7 @@ type Task struct {
 	name   string
 	t      time.Duration
 	fn     func() error
+	
 	Logger log.Logger
 }
 
