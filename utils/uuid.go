@@ -1,10 +1,10 @@
 package utils
 
 import (
-	"github.com/satori/go.uuid"
+	"github.com/gofrs/uuid"
 )
 
 func NewUUID() string {
-	u1 := uuid.Must(uuid.NewV4(), nil)
+	u1,_ := uuid.NewV4()
 	return u1.String()
 }
