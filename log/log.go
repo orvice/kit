@@ -1,9 +1,8 @@
 package log
 
 import (
-	"os"
-
 	"github.com/sirupsen/logrus"
+	"go.uber.org/zap/zapcore"
 )
 
 type Logger interface {
@@ -22,13 +21,9 @@ func NewDefaultLogger() Logger {
 }
 
 func NewFileLogger(path string) Logger {
-	l := logrus.New()
-	l.SetLevel(logrus.DebugLevel)
-	file, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0666)
-	if err == nil {
-		l.Out = file
-	} else {
-		l.Errorf("Failed to log to file %s, using default stderr %v", path, err)
+	l, err := NewLogger(path, zapcore.DebugLevel)
+	if err != nil {
+		return NewDefaultLogger()
 	}
 	return l
 }
