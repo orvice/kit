@@ -7,10 +7,10 @@ import (
 )
 
 type Task struct {
-	name   string
-	t      time.Duration
-	fn     func() error
-	
+	name string
+	t    time.Duration
+	fn   func() error
+
 	Logger log.Logger
 }
 
@@ -33,7 +33,7 @@ func (t *Task) Run() {
 	for {
 		start := time.Now()
 		err := t.fn()
-		t.Logger.Infof("run task %s cost: %v error: %v  ", t.name, err, time.Since(start))
+		t.Logger.Infof("run task %s cost: %v error: %v  ", t.name, time.Since(start), err)
 		time.Sleep(t.t)
 	}
 }
